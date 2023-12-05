@@ -1,0 +1,492 @@
+QUESTION 1
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Que1
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Account account = new Account();
+            account.Balance = 20000;
+            Console.WriteLine("The available balance is : " + account.Balance);
+            account.Balance = 1500;
+            Console.WriteLine("The available balance is : " + account.Balance);
+        }
+    }
+    class Account
+    {
+        private int bal;
+        public int Balance
+        {
+            get
+            {
+                return bal;
+            }
+            set
+            {
+                if (value >= 0)
+                {
+                    bal = value;
+                }
+                else
+                    throw new ArgumentException("Value must be greater than 0");
+            }
+        }
+    }
+}
+
+QUESTION 2
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Que3
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Person person = new Person();
+            person.firstName = "nidhi";
+            person.lastName = "sharma";
+            Console.WriteLine("Full Name is : " + person.fullName);
+        }
+    }
+    class Person
+    {
+        private string FirstName, LastName;
+        public string firstName
+        {
+            set
+            {
+                FirstName = value;
+            }
+        }
+        public string lastName
+        {
+            set
+            {
+                LastName = value;
+            }
+        }
+        public string fullName
+        {
+            get
+            {
+                return FirstName + " " + LastName;
+            }
+        }
+    }
+}
+
+QUESTION 3
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Que4
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Temperture temperture = new Temperture();
+            temperture.Celsius = 40.8;
+            Console.WriteLine("Temperature in Celsius : " + temperture.Celsius);
+            Console.WriteLine("Temperature in Fahreneit : " + temperture.fahreneit);
+        }
+    }
+    class Temperture
+    {
+        private double temperature;
+        public double Celsius
+        {
+            set
+            {
+                temperature = value;
+            }
+            get
+            {
+                return temperature;
+            }
+        }
+        public double fahreneit
+        {
+            get
+            {
+                return ((temperature * 9 / 5) + 32);
+            }
+        }
+    }
+}
+
+
+QUESTION 4 
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Que4
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Temperture temperture = new Temperture();
+            temperture.Celsius = 40.8;
+            Console.WriteLine("Temperature in Celsius : " + temperture.Celsius);
+            Console.WriteLine("Temperature in Fahreneit : " + temperture.fahreneit);
+        }
+    }
+    class Temperture
+    {
+        private double temperature;
+        public double Celsius
+        {
+            set
+            {
+                temperature = value;
+            }
+            get
+            {
+                return temperature;
+            }
+        }
+        public double fahreneit
+        {
+            get
+            {
+                return ((temperature * 9 / 5) + 32);
+            }
+        }
+    }
+}
+
+OUESTION 5
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Que6
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            var S = new Stack<int>(5);
+            S.push(1);
+            S.push(2);
+            S.push(3);
+            S.push(4);
+            S.push(5);
+            Console.WriteLine("Elements in Stack : ");
+            for (int i = 0; i < S.count; i++)
+                Console.WriteLine(S[i]);
+            Console.WriteLine("Element Popped is : " + S.pop());
+            Console.WriteLine("Pushed Element is : 6");
+            S.push(6);
+            Console.WriteLine("New Elements in Stack : ");
+            for (int i = 0; i < S.count; i++)
+                Console.WriteLine(S[i]);
+        }
+    }
+    class Stack<T>
+    {
+        private T[] stack;
+        private int top;
+        public Stack(int size)
+        {
+            if (size < 0)
+            {
+                throw new ArgumentException("Value must be greater than 0");
+            }
+            stack = new T[size];
+            top = -1;
+        }
+        public T this[int index]
+        {
+            get
+            {
+                return stack[index];
+            }
+            set
+            {
+                stack[index] = value;
+            }
+        }
+        public int count
+        {
+            get
+            {
+                return top + 1;
+            }
+        }
+        public void push(T item)
+        {
+            if (top == stack.Length - 1)
+            {
+                throw new ArgumentException("Stack is OverFlow");
+            }
+            stack[++top] = item;
+        }
+        public T pop()
+        {
+            if (top < 0)
+            {
+                throw new ArgumentException("Stack is Empty!!");
+            }
+            return stack[top--];
+        }
+    }
+}
+
+QUESTION 6
+
+using Que7;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Que7
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Bookshelf bookshelf = new Bookshelf(10);
+            bookshelf.AddBook("To Kill a Mockingbird" ," Harper Lee");
+            bookshelf.AddBook("1984", "George Orwell");
+            bookshelf.AddBook("The Great Gatsby"," F. Scott Fitzgerald");
+            bookshelf.AddBook("My India", "S. Nihal Singh");
+            bookshelf.AddBook("Arthashastra", "Kautilya");
+
+            Console.WriteLine("Author of 'To Kill': " + bookshelf["To Kill"]);
+            Console.WriteLine("Author of '1984': " + bookshelf["1984"]);
+            Console.WriteLine("Author of 'The Great Gatsby': " + bookshelf["The Great Gatsby"]);
+            Console.WriteLine("Author of 'My India': " + bookshelf["My India"]);
+            Console.WriteLine("Author of 'Arthashastra': " + bookshelf["Arthashastra"]);
+        }
+    }
+    public class Bookshelf
+    {
+        private Book[] books;
+        private int bookCount;
+
+        public Bookshelf(int capacity)
+        {
+            if (capacity <= 0)
+            {
+                throw new ArgumentException("Capacity must be greater than 0");
+            }
+
+            books = new Book[capacity];
+            bookCount = 0;
+        }
+
+        public void AddBook(string title, string author)
+        {
+            if (bookCount < books.Length)
+            {
+                books[bookCount] = new Book(title, author);
+                bookCount++;
+            }
+            else
+            {
+                Console.WriteLine("Bookshelf is full. Cannot add more books.");
+            }
+        }
+
+        public string this[string title]
+        {
+            get
+            {
+                for (int i = 0; i < bookCount; i++)
+                {
+                    if (books[i].Title == title)
+                    {
+                        return books[i].Author;
+                    }
+                }
+                throw new ArgumentException("Book with title '{title}' not found.");
+            }
+        }
+    }
+
+    public class Book
+    {
+        public string Title { get; set; }
+        public string Author { get; set; }
+
+        public Book(string title, string author)
+        {
+            Title = title;
+            Author = author;
+        }
+    }
+}
+
+QUESTION 7
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Que8
+{
+    internal class Program
+    {
+        public enum Season
+        {
+            Summer,
+            Winter,
+            Rainy,
+            Spring,
+            Autumn
+        }
+        static void Main(string[] args)
+        {
+            Season now = Season.Spring;
+            switch (now)
+            {
+                case Season.Spring:
+                    Console.WriteLine("It's spring time!");
+                    break;
+                case Season.Rainy:
+                    Console.WriteLine("It's Rainy time!");
+                    break;
+                case Season.Summer:
+                    Console.WriteLine("It's summer time!");
+                    break;
+                case Season.Autumn:
+                    Console.WriteLine("It's autumn!");
+                    break;
+                case Season.Winter:
+                    Console.WriteLine("It's winter time!");
+                    break;
+                default:
+                    Console.WriteLine("Invalid season.");
+                    break;
+            }
+        }
+    }
+}
+
+QUESTION 8
+
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Que9
+{
+    internal class Program
+    {
+        public enum Shape
+        {
+            Circle,
+            Square,
+            Triangle
+        }
+        public static double CalArea(Shape shape, double side1, double side2 = 0.0)
+        {
+            switch (shape)
+            {
+                case Shape.Circle:
+                    return Math.PI * Math.Pow(side1, 4);
+                case Shape.Square:
+                    return Math.Pow(side1, 4);
+                case Shape.Triangle:
+                    return 0.5 * side1 * side2;
+                default:
+                    throw new ArgumentException("Invalid shape");
+            }
+        }
+        static void Main(string[] args)
+        {
+            Shape shape = Shape.Circle;
+            Console.WriteLine("The Area of " + shape + " is : " + CalArea(shape, 10.0, 0.0));
+        }
+    }
+}
+
+
+QUESTION  9
+
+﻿using System;
+
+public class BankAccount
+{
+    private decimal balance;
+
+    public decimal Balance
+    {
+        get
+        {
+            return balance;
+        }
+        set
+        {
+            if (value < 0)
+            {
+                throw new ArgumentException("Balance cannot be negative");
+            }
+            balance = value;
+        }
+    }
+
+    public BankAccount(decimal initialBalance)
+    {
+        Balance = initialBalance;
+    }
+
+    public void Deposit(decimal amount)
+    {
+        if (amount < 0)
+        {
+            throw new ArgumentException("Deposit amount cannot be negative");
+        }
+        Balance += amount;
+    }
+
+    public void Withdraw(decimal amount)
+    {
+        if (amount < 0)
+        {
+            throw new ArgumentException("Withdrawal amount cannot be negative");
+        }
+
+        if (amount > Balance)
+        {
+            throw new InvalidOperationException("Insufficient balance");
+        }
+
+        Balance -= amount;
+    }
+}
